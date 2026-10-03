@@ -1,0 +1,21 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Industrial SuperAgent Workbench</title>
+  <link rel="stylesheet" href="/assets/style.css">
+</head>
+<body>
+  <header><span class="eyebrow">OPERATIONS CONTROL PLANE</span><h1>Industrial SuperAgent Workbench</h1><p>Durable tasks · bounded skills · approval-gated actions · auditable execution</p></header>
+  <main>
+    <section class="panel composer">
+      <h2>Launch a task</h2>
+      <textarea id="request">Analyze a synthetic telecom incident and propose a change</textarea>
+      <button id="submit">Run workflow</button><span id="health">Checking runtime…</span>
+    </section>
+    <section class="panel"><div class="section-head"><h2>Task queue</h2><button class="ghost" id="refresh">Refresh</button></div><div id="tasks"></div></section>
+    <section class="panel detail"><h2>Execution detail</h2><div id="detail" class="empty">Select a task to inspect checkpoints, outputs and trace spans.</div></section>
+  </main>
+  <script src="/assets/app.js"></script>
+</body>
+</html>

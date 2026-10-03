@@ -1,0 +1,16 @@
+services:
+  workbench:
+    build: .
+    ports:
+      - "8000:8000"
+    environment:
+      AGENT_DATABASE: /data/superagent.db
+      AGENT_MODEL_PROVIDER: ${AGENT_MODEL_PROVIDER:-offline}
+      AGENT_MODEL_BASE_URL: ${AGENT_MODEL_BASE_URL:-}
+      AGENT_MODEL_NAME: ${AGENT_MODEL_NAME:-}
+      AGENT_MODEL_API_KEY: ${AGENT_MODEL_API_KEY:-}
+    volumes:
+      - agent-data:/data
+    restart: unless-stopped
+volumes:
+  agent-data:
