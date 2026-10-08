@@ -2,13 +2,13 @@
 
 [![CI](https://github.com/ZhengjunSun/industrial-superagent-workbench/actions/workflows/ci.yml/badge.svg)](https://github.com/ZhengjunSun/industrial-superagent-workbench/actions/workflows/ci.yml)
 
-A full-stack, durable multi-agent workbench for long-running industrial tasks. A lead agent plans work, delegates to bounded domain skills, pauses high-risk actions for approval, persists checkpoints, and exposes an operator console with trace and artifact views.
+A single-process industrial workflow prototype with a browser console. Keyword rules select sequential domain tools; SQLite persists task state and approvals. A model adapter synthesizes the final response. This is not autonomous multi-agent planning or a distributed production platform.
 
 ```mermaid
 flowchart LR
   UI[Operator console] --> API[FastAPI gateway]
-  API --> Q[Durable task queue]
-  Q --> L[Lead agent]
+  API --> Q[In-memory asyncio queue]
+  Q --> L[Rule-based planner]
   L --> T[Telecom skill]
   L --> R[Refinery skill]
   L --> G[Legal research skill]
@@ -23,9 +23,9 @@ flowchart LR
 ## Why this is more than a chat demo
 
 - Persistent lifecycle with queued, running, waiting-approval, completed, failed and cancelled states
-- Lead-agent planning plus isolated telecom, refinery and legal skills
-- Durable SQLite queue and checkpoints that survive process restarts
-- Idempotent step execution, bounded retries and cancellation
+- Keyword planning with telecom, refinery and legal tool modules, not isolated processes
+- SQLite checkpoints; an in-memory queue rebuilt from up to 200 recent tasks on startup
+- Stored-result reuse, bounded retries and cooperative cancellation; no exactly-once external side-effect guarantee
 - Approval before high-risk tool calls; reviewer identity enters the audit trail
 - OpenAI-compatible model adapter plus offline deterministic provider
 - Structured spans for agent, model, tool and policy operations

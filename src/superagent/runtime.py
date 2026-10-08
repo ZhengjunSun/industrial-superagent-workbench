@@ -86,7 +86,7 @@ class AgentRuntime:
                     continue
                 if step.risk == "high":
                     decision = self.store.approval(task_id, step.step_id)
-                    if decision is None:
+                    if decision not in {"approved", "rejected"}:
                         self.store.request_approval(task_id, step.step_id)
                         task.status = TaskStatus.WAITING_APPROVAL
                         task.metadata["pending_step"] = step.step_id
