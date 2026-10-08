@@ -58,6 +58,18 @@ set AGENT_MODEL_API_KEY=local-placeholder
 docker compose up --build
 ```
 
+## Verify the claims
+
+- [Architecture and reliability model](docs/architecture.md)
+- [Five-minute operator demo](docs/demo.md)
+- [Reproducible benchmark report](docs/benchmark.md)
+
+Run the same benchmark locally:
+
+```bash
+python scripts/benchmark.py --tasks 100
+```
+
 ## Safety and provenance
 
 All scenarios, logs, rules, prices and provisions are synthetic. The project is an independent portfolio implementation and contains no employer code, customer data or internal documentation. Tools are advisory and do not connect to operational systems.
